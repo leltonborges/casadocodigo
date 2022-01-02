@@ -1,9 +1,8 @@
 package br.com.casadocodigo.loja.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Autor {
@@ -15,11 +14,9 @@ public class Autor {
     public Autor() {
     }
 
-    public Autor(Integer id, String nome) {
+    public Autor(Integer id) {
         this.id = id;
-        this.nome = nome;
     }
-
 
     public Integer getId() {
         return id;
@@ -35,5 +32,13 @@ public class Autor {
 
     public void setNome(String name) {
         this.nome = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Autor{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                '}';
     }
 }

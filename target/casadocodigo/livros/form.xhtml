@@ -24,7 +24,7 @@
             </div>
             <div>
                 <h:outputLabel value="Autores"/>
-                <h:selectManyListbox >
+                <h:selectManyListbox value="#{adminLivrosBean.autoresId}" converter="javax.faces.Integer">
                     <c:selectItems value="#{adminLivrosBean.autores}"
                                    var="autor" itemValue="#{autor.id}"
                                     itemLabel="#{autor.nome}"/>

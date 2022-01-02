@@ -2,6 +2,8 @@ package br.com.casadocodigo.loja.models;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Livro {
@@ -14,6 +16,13 @@ public class Livro {
     private String descricao;
     private BigDecimal preco;
     private Integer numeroPaginas;
+
+    @JoinTable(
+            joinColumns = @JoinColumn(name = "id_autor", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "id_livro", referencedColumnName = "id")
+    )
+    @ManyToMany
+    private List<Autor> autores = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -55,13 +64,23 @@ public class Livro {
         this.numeroPaginas = numeroPaginas;
     }
 
+    public List<Autor> getAutores() {
+        return autores;
+    }
+
+    public void setAutores(List<Autor> autores) {
+        this.autores = autores;
+    }
+
     @Override
     public String toString() {
         return "Livro{" +
-                "titulo='" + titulo + '\'' +
+                "id=" + id +
+                ", titulo='" + titulo + '\'' +
                 ", descricao='" + descricao + '\'' +
                 ", preco=" + preco +
                 ", numeroPaginas=" + numeroPaginas +
+                ", autores=" + autores +
                 '}';
     }
 }
