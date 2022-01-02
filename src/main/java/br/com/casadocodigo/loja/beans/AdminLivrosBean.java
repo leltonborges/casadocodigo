@@ -2,6 +2,7 @@ package br.com.casadocodigo.loja.beans;
 
 import br.com.casadocodigo.loja.daos.AutorDao;
 import br.com.casadocodigo.loja.daos.LivroDao;
+import br.com.casadocodigo.loja.infra.FileSave;
 import br.com.casadocodigo.loja.models.Autor;
 import br.com.casadocodigo.loja.models.Livro;
 
@@ -57,16 +58,17 @@ public class AdminLivrosBean implements Serializable {
     }
 
     @Transactional
-    public String salvar() throws IOException {
-        String capa = "/opt/casadocodigo/livros/capas/" + capaLivro.getSubmittedFileName();
-        capaLivro.write(capa);
-
+    public String salvar(){
+//        writerPath();
+//        this.livro.setCapaPath(relativePath);
+        FileSave fileSave = new FileSave();
+        this.livro.setCapaPath(fileSave.writerPath(capaLivro, "/livros/capas/"));
         livroDao.salvar(livro);
         flash.setKeepMessages(true);
         facesContext.addMessage(null, new FacesMessage("Livro cadastrado com sucesso!!!"));
-
         return "/livros/lista?faces-redirect=true";
     }
+
 
 
 }

@@ -33,6 +33,8 @@ public class Livro {
     @Temporal(TemporalType.DATE)
     private Calendar dataPublicacao;
 
+    private String capaPath;
+
     @JoinTable(
             joinColumns = @JoinColumn(name = "id_autor", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "id_livro", referencedColumnName = "id")
@@ -107,6 +109,14 @@ public class Livro {
 
     public void setAutores(List<Autor> autores) {
         this.autores = autores;
+    }
+
+    public String getCapaPath() {
+        return capaPath;
+    }
+
+    public void setCapaPath(String capaPath) {
+        this.capaPath = capaPath;
     }
 
     @Override
