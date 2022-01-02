@@ -6,6 +6,8 @@ import br.com.casadocodigo.loja.models.Autor;
 import br.com.casadocodigo.loja.models.Livro;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
@@ -51,6 +53,14 @@ public class AdminLivrosBean implements Serializable{
     public String salvar(){
         autoresId.forEach(id -> livro.getAutores().add(new Autor(id)));
         livroDao.salvar(livro);
+
+        FacesContext.getCurrentInstance()
+                .getExternalContext()
+                .getFlash()
+                .setKeepMessages(true);
+
+        FacesContext.getCurrentInstance()
+                .addMessage(null, new FacesMessage("Livro cadastrado com sucesso!!!"));
 
         return "/livros/lista?faces-redirect=true";
     }
