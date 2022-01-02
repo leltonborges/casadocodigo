@@ -18,6 +18,12 @@ public class Autor {
         this.id = id;
     }
 
+    public Autor(Integer id, String nome) {
+        this.id = id;
+        this.nome = nome;
+    }
+
+
     public Integer getId() {
         return id;
     }

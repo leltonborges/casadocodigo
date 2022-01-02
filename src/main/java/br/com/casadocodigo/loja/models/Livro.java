@@ -24,6 +24,17 @@ public class Livro {
     @ManyToMany
     private List<Autor> autores = new ArrayList<>();
 
+    public Livro() {
+    }
+
+    public Livro(Integer id, String titulo, String descricao, BigDecimal preco, Integer numeroPaginas) {
+        this.id = id;
+        this.titulo = titulo;
+        this.descricao = descricao;
+        this.preco = preco;
+        this.numeroPaginas = numeroPaginas;
+    }
+
     public Integer getId() {
         return id;
     }
