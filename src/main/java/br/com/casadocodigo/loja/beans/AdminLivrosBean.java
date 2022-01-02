@@ -5,9 +5,11 @@ import br.com.casadocodigo.loja.daos.LivroDao;
 import br.com.casadocodigo.loja.models.Autor;
 import br.com.casadocodigo.loja.models.Livro;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
@@ -17,7 +19,7 @@ import java.util.List;
 
 @Named
 @RequestScoped
-public class AdminLivrosBean implements Serializable{
+public class AdminLivrosBean implements Serializable {
 
     private static final long serialVersionUID = -1590819766396690851L;
     @Inject
@@ -26,6 +28,10 @@ public class AdminLivrosBean implements Serializable{
     private LivroDao livroDao;
     @Inject
     private AutorDao autorDao;
+    @Inject
+    private FacesContext facesContext;
+    @Inject
+    private Flash flash;
 
     private List<Integer> autoresId = new ArrayList<>();
 
@@ -45,26 +51,21 @@ public class AdminLivrosBean implements Serializable{
         this.autoresId = autoresId;
     }
 
-    public List<Autor> getAutores(){
+    public List<Autor> getAutores() {
         return autorDao.getAllAutores();
     }
 
     @Transactional
-    public String salvar(){
+    public String salvar() {
         autoresId.forEach(id -> livro.getAutores().add(new Autor(id)));
         livroDao.salvar(livro);
 
-        FacesContext.getCurrentInstance()
-                .getExternalContext()
-                .getFlash()
-                .setKeepMessages(true);
+        flash.setKeepMessages(true);
 
-        FacesContext.getCurrentInstance()
-                .addMessage(null, new FacesMessage("Livro cadastrado com sucesso!!!"));
+        facesContext.addMessage(null, new FacesMessage("Livro cadastrado com sucesso!!!"));
 
         return "/livros/lista?faces-redirect=true";
     }
-
 
 
 }
