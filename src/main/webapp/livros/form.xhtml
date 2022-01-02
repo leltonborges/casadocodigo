@@ -42,9 +42,8 @@
     </div>
     <div>
         <h:outputLabel value="Data de Publicação"/>
-        <h:inputText value="#{adminLivrosBean.livro.dataPublicacao.time}"
+        <h:inputText value="#{adminLivrosBean.livro.dataPublicacao}"
                      id="dataPublicacao">
-            <c:convertDateTime pattern="dd/MM/yyyy" />
         </h:inputText>
         <h:message for="dataPublicacao"/>
     </div>

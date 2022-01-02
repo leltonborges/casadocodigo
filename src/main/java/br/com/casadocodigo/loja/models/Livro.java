@@ -31,7 +31,7 @@ public class Livro {
     private Integer numeroPaginas;
 
     @Temporal(TemporalType.DATE)
-    private Calendar dataPublicacao = Calendar.getInstance();
+    private Calendar dataPublicacao;
 
     @JoinTable(
             joinColumns = @JoinColumn(name = "id_autor", referencedColumnName = "id"),
