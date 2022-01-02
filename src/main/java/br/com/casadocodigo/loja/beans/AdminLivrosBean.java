@@ -33,8 +33,6 @@ public class AdminLivrosBean implements Serializable {
     @Inject
     private Flash flash;
 
-    private List<Integer> autoresId = new ArrayList<>();
-
     public Livro getLivro() {
         return livro;
     }
@@ -43,21 +41,12 @@ public class AdminLivrosBean implements Serializable {
         this.livro = livro;
     }
 
-    public List<Integer> getAutoresId() {
-        return autoresId;
-    }
-
-    public void setAutoresId(List<Integer> autoresId) {
-        this.autoresId = autoresId;
-    }
-
     public List<Autor> getAutores() {
         return autorDao.getAllAutores();
     }
 
     @Transactional
     public String salvar() {
-        autoresId.forEach(id -> livro.getAutores().add(new Autor(id)));
         livroDao.salvar(livro);
 
         flash.setKeepMessages(true);
