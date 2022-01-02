@@ -10,6 +10,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 @Entity
@@ -28,6 +29,9 @@ public class Livro {
     private BigDecimal preco;
     @Min(20)
     private Integer numeroPaginas;
+
+    @Temporal(TemporalType.DATE)
+    private Calendar dataPublicacao = Calendar.getInstance();
 
     @JoinTable(
             joinColumns = @JoinColumn(name = "id_autor", referencedColumnName = "id"),
@@ -87,6 +91,14 @@ public class Livro {
 
     public void setNumeroPaginas(Integer numeroPaginas) {
         this.numeroPaginas = numeroPaginas;
+    }
+
+    public Calendar getDataPublicacao() {
+        return dataPublicacao;
+    }
+
+    public void setDataPublicacao(Calendar dataPublicacao) {
+        this.dataPublicacao = dataPublicacao;
     }
 
     public List<Autor> getAutores() {
