@@ -5,16 +5,17 @@ import br.com.casadocodigo.loja.daos.LivroDao;
 import br.com.casadocodigo.loja.models.Autor;
 import br.com.casadocodigo.loja.models.Livro;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.Part;
 import javax.transaction.Transactional;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 @Named
@@ -33,6 +34,8 @@ public class AdminLivrosBean implements Serializable {
     @Inject
     private Flash flash;
 
+    private Part capaLivro;
+
     public Livro getLivro() {
         return livro;
     }
@@ -45,12 +48,21 @@ public class AdminLivrosBean implements Serializable {
         return autorDao.getAllAutores();
     }
 
+    public Part getCapaLivro() {
+        return capaLivro;
+    }
+
+    public void setCapaLivro(Part capaLivro) {
+        this.capaLivro = capaLivro;
+    }
+
     @Transactional
-    public String salvar() {
+    public String salvar() throws IOException {
+        String capa = "/opt/casadocodigo/livros/capas/" + capaLivro.getSubmittedFileName();
+        capaLivro.write(capa);
+
         livroDao.salvar(livro);
-
         flash.setKeepMessages(true);
-
         facesContext.addMessage(null, new FacesMessage("Livro cadastrado com sucesso!!!"));
 
         return "/livros/lista?faces-redirect=true";
