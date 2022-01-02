@@ -4,6 +4,7 @@ import br.com.casadocodigo.loja.models.Livro;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 public class LivroDao {
 
@@ -12,5 +13,10 @@ public class LivroDao {
 
     public void salvar(Livro livro){
         manager.persist(livro);
+    }
+
+    public List<Livro> lista() {
+        String jpql = "select distinct(l) from Livro l join fetch l.autores";
+        return manager.createQuery(jpql, Livro.class).getResultList();
     }
 }

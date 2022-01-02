@@ -48,12 +48,11 @@ public class AdminLivrosBean implements Serializable{
     }
 
     @Transactional
-    public void salvar(){
+    public String salvar(){
         autoresId.forEach(id -> livro.getAutores().add(new Autor(id)));
         livroDao.salvar(livro);
 
-        this.livro = new Livro();
-        this.autoresId = new ArrayList<>();
+        return "/livros/lista?faces-redirect=true";
     }
 
 
