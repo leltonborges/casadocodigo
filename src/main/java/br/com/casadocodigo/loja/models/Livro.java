@@ -1,6 +1,13 @@
 package br.com.casadocodigo.loja.models;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,10 +18,15 @@ public class Livro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @NotBlank
     private String titulo;
     @Lob
+    @Length(min = 10)
+    @NotBlank
     private String descricao;
+    @DecimalMin("20")
     private BigDecimal preco;
+    @Min(20)
     private Integer numeroPaginas;
 
     @JoinTable(
@@ -22,6 +34,8 @@ public class Livro {
             inverseJoinColumns = @JoinColumn(name = "id_livro", referencedColumnName = "id")
     )
     @ManyToMany
+    @NotNull
+    @Size(min = 1)
     private List<Autor> autores = new ArrayList<>();
 
     public Livro() {
