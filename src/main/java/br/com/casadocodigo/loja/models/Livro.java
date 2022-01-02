@@ -53,6 +53,7 @@ public class Livro {
         this.descricao = descricao;
         this.preco = preco;
         this.numeroPaginas = numeroPaginas;
+        this.setCapaPath("livros/capas/quarkus.png");
     }
 
     public Integer getId() {
