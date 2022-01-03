@@ -2,13 +2,17 @@ package br.com.casadocodigo.loja.daos;
 
 import br.com.casadocodigo.loja.models.Livro;
 
+import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 import java.util.List;
 
+//@Stateful // @Stateful da EJB -> usa com @PersistenceContext(type = PersistenceContextType.EXTENDED) - OBRIGATÓRIO
 public class LivroDao {
 
-    @PersistenceContext
+//    @PersistenceContext(type = PersistenceContextType.EXTENDED) // É usada com @Stateful da EJB
+    @PersistenceContext(type = PersistenceContextType.TRANSACTION)
     private EntityManager manager;
 
     public void salvar(Livro livro){
@@ -36,6 +40,9 @@ public class LivroDao {
     }
 
     public Livro buscarPorId(Integer id){
+        //Outra forma de resolver o fetch lazy
+//        return manager.find(Livro.class, id);
+
         String jpql = "select l from Livro l join fetch l.autores au " +
                 "where l.id = :id";
         return manager.createQuery(jpql, Livro.class)

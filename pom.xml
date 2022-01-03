@@ -45,6 +45,11 @@
       <artifactId>hibernate-validator</artifactId>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>javax.ejb</groupId>
+      <artifactId>javax.ejb-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
   <dependencyManagement>
     <dependencies>
@@ -83,6 +88,12 @@
         <groupId>org.hibernate</groupId>
         <artifactId>hibernate-validator</artifactId>
         <version>7.0.1.Final</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>javax.ejb</groupId>
+        <artifactId>javax.ejb-api</artifactId>
+        <version>3.2</version>
         <scope>provided</scope>
       </dependency>
     </dependencies>
