@@ -6,9 +6,12 @@ import br.com.casadocodigo.loja.models.Livro;
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
+import java.io.Serializable;
 
 @Model
-public class LivroDetalheBean {
+public class LivroDetalheBean implements Serializable {
+    private static final long serialVersionUID = -9027244480572698875L;
+
     @Inject
     private LivroDao livroDao;
     @Inject

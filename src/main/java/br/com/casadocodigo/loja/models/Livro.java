@@ -44,18 +44,6 @@ public class Livro {
     @Size(min = 1)
     private List<Autor> autores = new ArrayList<>();
 
-    public Livro() {
-    }
-
-    public Livro(Integer id, String titulo, String descricao, BigDecimal preco, Integer numeroPaginas) {
-        this.id = id;
-        this.titulo = titulo;
-        this.descricao = descricao;
-        this.preco = preco;
-        this.numeroPaginas = numeroPaginas;
-        this.setCapaPath("livros/capas/spring-framework-featured_large.png");
-    }
-
     public Integer getId() {
         return id;
     }

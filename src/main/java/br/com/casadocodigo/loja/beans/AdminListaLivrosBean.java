@@ -5,11 +5,14 @@ import br.com.casadocodigo.loja.models.Livro;
 
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Model
-public class AdminListaLivrosBean {
+public class AdminListaLivrosBean implements Serializable {
+    private static final long serialVersionUID = -3647654222269659720L;
+
     @Inject
     private LivroDao livroDao;
 

@@ -12,7 +12,7 @@ import java.util.List;
 public class LivroDao {
 
 //    @PersistenceContext(type = PersistenceContextType.EXTENDED) // É usada com @Stateful da EJB
-    @PersistenceContext(type = PersistenceContextType.TRANSACTION)
+    @PersistenceContext
     private EntityManager manager;
 
     public void salvar(Livro livro){

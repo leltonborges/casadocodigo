@@ -14,16 +14,14 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.Part;
 import javax.transaction.Transactional;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.Serializable;
 import java.util.List;
 
 @Named
 @RequestScoped
 public class AdminLivrosBean implements Serializable {
-
     private static final long serialVersionUID = -1590819766396690851L;
+
     @Inject
     private Livro livro;
     @Inject
