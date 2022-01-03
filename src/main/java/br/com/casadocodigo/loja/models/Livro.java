@@ -53,7 +53,7 @@ public class Livro {
         this.descricao = descricao;
         this.preco = preco;
         this.numeroPaginas = numeroPaginas;
-        this.setCapaPath("livros/capas/quarkus.png");
+        this.setCapaPath("livros/capas/spring-framework-featured_large.png");
     }
 
     public Integer getId() {
