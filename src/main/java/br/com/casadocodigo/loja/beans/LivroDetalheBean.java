@@ -15,6 +15,10 @@ public class LivroDetalheBean {
     private Livro livro;
     private Integer id;
 
+    @PostConstruct
+    private void init(){
+    }
+
     public void carragaDetalhe(){
         this.livro = this.livroDao.buscarPorId(id);
     }
