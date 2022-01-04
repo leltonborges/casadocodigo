@@ -7,6 +7,8 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Model
 public class LivroDetalheBean implements Serializable {
@@ -17,6 +19,7 @@ public class LivroDetalheBean implements Serializable {
     @Inject
     private Livro livro;
     private Integer id;
+    private List<Livro> addLivros = new ArrayList<>();
 
     @PostConstruct
     private void init(){
@@ -40,5 +43,13 @@ public class LivroDetalheBean implements Serializable {
 
     public void setLivro(Livro livro) {
         this.livro = livro;
+    }
+
+    public List<Livro> getAddLivros() {
+        return addLivros;
+    }
+
+    public void setAddLivros(List<Livro> addLivros) {
+        this.addLivros = addLivros;
     }
 }

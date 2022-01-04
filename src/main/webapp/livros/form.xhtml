@@ -10,7 +10,29 @@
     <h:outputScript library="js" name="bootstrap.min.js"/>
 </h:head>
 <h:body>
+    <header class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <h:link value="Casa do Código" outcome="/" styleClass="nav-link"/>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <h:link value="Lista" outcome="lista" styleClass="nav-link"/>
+                        </li>
+                        <li class="nav-item">
+                            <h:link value="Cadastro" outcome="form" styleClass="nav-link"/>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
     <main class="container">
+        <div class=""></div>
         <h1>Dados do Livro</h1>
         <h:form enctype="multipart/form-data">
             <div class="row">
@@ -39,7 +61,7 @@
                 <div class="form-group col-md-6">
                     <h:outputLabel value="Preço" styleClass="control-label"/>
                     <h:inputText value="#{adminLivrosBean.livro.preco}"
-                                 required="true" id="preco" styleClass="form-control" >
+                                 required="true" id="preco" styleClass="form-control">
                     </h:inputText>
                     <h:message for="preco"/>
                 </div>
@@ -67,7 +89,11 @@
                     <h:message for="capaLivro"/>
                 </div>
             </div>
-            <h:commandButton value="Cadastrar" action="#{adminLivrosBean.salvar}" styleClass="btn btn-success"/>
+            <div class="row mt-4">
+                <div class="form-group">
+                    <h:commandButton value="Cadastrar" action="#{adminLivrosBean.salvar}" styleClass="btn btn-success form-control"/>
+                </div>
+            </div>
         </h:form>
     </main>
 </h:body>

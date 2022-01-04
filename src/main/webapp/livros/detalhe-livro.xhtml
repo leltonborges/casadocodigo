@@ -3,7 +3,9 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:xlink="http://www.w3.org/1999/xlink">
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <f:metadata>
     <f:viewParam id="id" name="id" value="#{livroDetalheBean.id}"/>
@@ -90,7 +92,8 @@
 <body cz-shortcut-listen="true">
 <header role="banner" class="cabecalhoPrincipal container">
     <h1 class="cabecalhoPrincipal-titulo">
-        <a tabindex="1" href="#{request.scheme}://#{request.serverName}:#{request.serverPort}#{request.contextPath}" class="cabecalhoPrincipal-linkTitulo">
+        <a tabindex="1" href="#{request.scheme}://#{request.serverName}:#{request.serverPort}#{request.contextPath}"
+           class="cabecalhoPrincipal-linkTitulo">
             <svg class="logo" role="img" aria-labelledby="altLogo" width="157px" height="55px"
                  viewBox="-181 211.4 207.5 55" preserveAspectRatio="xMinYMid slice">
                 <title id="altLogo">Casa do Código - Livros e Tecnologia</title>
@@ -335,7 +338,8 @@
         </header>
 
 
-        <form action="https://www.casadocodigo.com.br/cart/add" method="POST" class="adicionarAoCarrinho">
+        <form action="https://www.casadocodigo.com.br/cart/add" jsf:id="formComprar"
+              method="POST" class="adicionarAoCarrinho">
             <ul class="adicionarAoCarrinho-listaOfertas">
                 <li class="adicionarAoCarrinho-oferta" itemprop="offers" itemscope=""
                     itemtype="http://schema.org/Offer">
@@ -359,7 +363,9 @@
 					</span>
                         </p>
                     </label>
-                    <button class="adicionarAoCarrinho-botaoComprar" type="submit" name="id" value="2055441665"
+
+                    <button class="adicionarAoCarrinho-botaoComprar" type="submit"
+                            name="id" value="2055441665" jsf:action="#{livroDetalheBean.addLivros}"
                             title="Compre o E-book">
                         Comprar
                     </button>
@@ -391,6 +397,15 @@
                 </dt>
                 <dd class="infosAdicionaisDoLivro-info-valor" itemprop="numberOfPages">
                     #{livroDetalheBean.livro.numeroPaginas} páginas
+                </dd>
+
+                <dt class="infosAdicionaisDoLivro-info-titulo" >
+                    Data de Publicação:
+                </dt>
+                <dd class="infosAdicionaisDoLivro-info-valor" itemprop="dataPublicacao">
+                    <h:outputText value="#{livroDetalheBean.livro.dataPublicacao.time}">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    </h:outputText>
                 </dd>
 
                 <dt class="infosAdicionaisDoLivro-info-titulo">
