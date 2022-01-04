@@ -19,7 +19,6 @@ public class LivroDetalheBean implements Serializable {
     @Inject
     private Livro livro;
     private Integer id;
-    private List<Livro> addLivros = new ArrayList<>();
 
     @PostConstruct
     private void init(){
@@ -45,11 +44,4 @@ public class LivroDetalheBean implements Serializable {
         this.livro = livro;
     }
 
-    public List<Livro> getAddLivros() {
-        return addLivros;
-    }
-
-    public void setAddLivros(List<Livro> addLivros) {
-        this.addLivros = addLivros;
-    }
 }
