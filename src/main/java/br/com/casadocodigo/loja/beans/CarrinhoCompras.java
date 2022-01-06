@@ -39,4 +39,9 @@ public class CarrinhoCompras implements Serializable {
                 .getPreco()
                 .multiply(BigDecimal.valueOf(item.getQuantidade()));
     }
+
+    public Boolean remover(CarrinhoItem item) {
+        boolean result = this.items.remove(item);
+        return result;
+    }
 }

@@ -25,4 +25,11 @@ public class CarrinhoComprasBean {
     public CarrinhoCompras getCarrinhoCompras() {
         return carrinhoCompras;
     }
+
+    public String remover(CarrinhoItem item){
+        Boolean isRemove = this.carrinhoCompras.remover(item);
+
+        return isRemove? "/carrinho/carrinho?faces-redirect=true&success=true" :
+                "/carrinho/carrinho?faces-redirect=true&success=false";
+    }
 }

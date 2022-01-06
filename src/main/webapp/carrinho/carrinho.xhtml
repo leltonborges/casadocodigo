@@ -289,7 +289,7 @@
                             title="Preço unitário: #{carrinhoItem.livro.preco}">#{carrinhoCompras.totalItem(carrinhoItem)}
                         </td>
                         <td class="formularioDoCarrinho-item">
-                            <a href="https://www.casadocodigo.com.br/cart/change?id=18404155847&amp;quantity=0">
+                            <a jsf:action="#{carrinhoComprasBean.remover(carrinhoItem)}">
                                 <img class="formularioDoCarrinho-item-remover-imagem"
                                      src="#{request.contextPath}/resources/imagens/trash.png"
                                      alt="X" title="Remover"/>
