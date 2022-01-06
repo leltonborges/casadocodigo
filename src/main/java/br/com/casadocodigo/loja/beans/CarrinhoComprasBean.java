@@ -1,7 +1,6 @@
 package br.com.casadocodigo.loja.beans;
 
 import br.com.casadocodigo.loja.daos.LivroDao;
-import br.com.casadocodigo.loja.models.CarrinhoCompras;
 import br.com.casadocodigo.loja.models.CarrinhoItem;
 import br.com.casadocodigo.loja.models.Livro;
 

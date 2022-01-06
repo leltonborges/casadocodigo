@@ -1,9 +1,12 @@
-package br.com.casadocodigo.loja.models;
+package br.com.casadocodigo.loja.beans;
+
+import br.com.casadocodigo.loja.models.CarrinhoItem;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.*;
 
 @Named
@@ -23,5 +26,17 @@ public class CarrinhoCompras implements Serializable {
 
     public List<CarrinhoItem> getItems() {
         return new ArrayList<CarrinhoItem>(items);
+    }
+
+    public BigDecimal getTotal(){
+        return items.stream().map(i -> i.getLivro().getPreco()
+                .multiply(BigDecimal.valueOf(i.getQuantidade())))
+                .reduce((s,t ) -> t.add(s)).get();
+    }
+
+    public BigDecimal totalItem(CarrinhoItem item){
+        return item.getLivro()
+                .getPreco()
+                .multiply(BigDecimal.valueOf(item.getQuantidade()));
     }
 }
