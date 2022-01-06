@@ -45,8 +45,10 @@ public class LivroDao {
 
         String jpql = "select l from Livro l join fetch l.autores au " +
                 "where l.id = :id";
-        return manager.createQuery(jpql, Livro.class)
+        Livro livro = manager.createQuery(jpql, Livro.class)
                 .setParameter("id", id)
                 .getSingleResult();
+        System.out.println("\n\n\n\nO livro é: "+ livro);
+        return livro;
     }
 }

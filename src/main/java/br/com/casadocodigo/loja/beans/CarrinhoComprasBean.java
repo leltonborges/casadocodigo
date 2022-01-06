@@ -7,8 +7,6 @@ import br.com.casadocodigo.loja.models.Livro;
 
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
-import java.util.List;
-import java.util.Set;
 
 @Model
 public class CarrinhoComprasBean {
@@ -19,9 +17,10 @@ public class CarrinhoComprasBean {
 
     public String addLivro(Integer id){
         Livro livro = livroDao.buscarPorId(id);
+        System.out.println(livro);
         CarrinhoItem item = new CarrinhoItem(livro);
         carrinhoCompras.add(item);
-        return "carrinho?faces-redirect=true";
+        return "/carrinho/carrinho?faces-redirect=true";
     }
 
     public CarrinhoCompras getCarrinhoCompras() {

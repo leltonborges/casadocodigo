@@ -1,9 +1,16 @@
 package br.com.casadocodigo.loja.models;
 
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
+import java.io.Serializable;
 import java.util.*;
 
-public class CarrinhoCompras {
-    
+@Named
+@SessionScoped
+public class CarrinhoCompras implements Serializable {
+    private static final long serialVersionUID = -4889749108190966809L;
+
     private Set<CarrinhoItem> items = new HashSet<>();
 
     public void add(CarrinhoItem item){
