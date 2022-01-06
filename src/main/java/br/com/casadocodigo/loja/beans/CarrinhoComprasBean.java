@@ -32,4 +32,11 @@ public class CarrinhoComprasBean {
         return isRemove? "/carrinho/carrinho?faces-redirect=true&success=true" :
                 "/carrinho/carrinho?faces-redirect=true&success=false";
     }
+
+    public String chekout(){
+        if (carrinhoCompras.getItems().size() == 0 ){
+            return null;
+        }
+        return "/carrinho/checkout?faces-redirect=true";
+    }
 }
