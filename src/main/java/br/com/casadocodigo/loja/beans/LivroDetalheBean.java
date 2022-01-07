@@ -7,8 +7,6 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 @Model
 public class LivroDetalheBean implements Serializable {

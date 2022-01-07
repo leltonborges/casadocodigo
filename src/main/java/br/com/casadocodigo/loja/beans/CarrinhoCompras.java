@@ -1,9 +1,14 @@
 package br.com.casadocodigo.loja.beans;
 
+import br.com.casadocodigo.loja.daos.CompraDao;
+import br.com.casadocodigo.loja.daos.UsuarioDao;
 import br.com.casadocodigo.loja.models.CarrinhoItem;
+import br.com.casadocodigo.loja.models.Compra;
+import br.com.casadocodigo.loja.models.Usuario;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -13,6 +18,8 @@ import java.util.*;
 @SessionScoped
 public class CarrinhoCompras implements Serializable {
     private static final long serialVersionUID = -4889749108190966809L;
+    @Inject
+    private CompraDao compraDao;
 
     private Set<CarrinhoItem> items = new HashSet<>();
 
@@ -43,5 +50,16 @@ public class CarrinhoCompras implements Serializable {
     public Boolean remover(CarrinhoItem item) {
         boolean result = this.items.remove(item);
         return result;
+    }
+
+    public void finalizar(Usuario user) {
+        Compra compra = new Compra();
+        compra.setUsuario(user);
+        compra.setItems(this.toJson());
+        compraDao.salvar(compra);
+    }
+
+    private String toJson() {
+        return "{}";
     }
 }

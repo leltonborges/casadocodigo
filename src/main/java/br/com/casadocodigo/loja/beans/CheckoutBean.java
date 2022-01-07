@@ -6,20 +6,19 @@ import br.com.casadocodigo.loja.models.Usuario;
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import java.io.Serializable;
 
 @Model
-public class CheckoutBean {
+public class CheckoutBean implements Serializable {
+    private static final long serialVersionUID = -6100236659196909211L;
     @Inject
     private Usuario user;
     @Inject
-    private UsuarioDao usuarioDao;
+    private CarrinhoCompras carrinho;
 
     @Transactional
     public void finalizar(){
-        if(user.equals(null)){
-            throw new RuntimeException("usuário nulo");
-        }
-        usuarioDao.salvar(user);
+        carrinho.finalizar(user);
     }
 
     public Usuario getUser() {
