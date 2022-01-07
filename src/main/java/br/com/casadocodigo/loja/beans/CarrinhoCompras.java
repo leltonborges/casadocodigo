@@ -10,6 +10,9 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObjectBuilder;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.*;
@@ -23,11 +26,11 @@ public class CarrinhoCompras implements Serializable {
 
     private Set<CarrinhoItem> items = new HashSet<>();
 
-    public void add(CarrinhoItem item){
+    public void add(CarrinhoItem item) {
         items.add(item);
     }
 
-    public Set<CarrinhoItem> carrinhoItems(){
+    public Set<CarrinhoItem> carrinhoItems() {
         return items;
     }
 
@@ -35,13 +38,13 @@ public class CarrinhoCompras implements Serializable {
         return new ArrayList<CarrinhoItem>(items);
     }
 
-    public BigDecimal getTotal(){
+    public BigDecimal getTotal() {
         return items.stream().map(i -> i.getLivro().getPreco()
-                .multiply(BigDecimal.valueOf(i.getQuantidade())))
-                .reduce((s,t ) -> t.add(s)).get();
+                        .multiply(BigDecimal.valueOf(i.getQuantidade())))
+                .reduce((s, t) -> t.add(s)).get();
     }
 
-    public BigDecimal totalItem(CarrinhoItem item){
+    public BigDecimal totalItem(CarrinhoItem item) {
         return item.getLivro()
                 .getPreco()
                 .multiply(BigDecimal.valueOf(item.getQuantidade()));
@@ -60,6 +63,19 @@ public class CarrinhoCompras implements Serializable {
     }
 
     private String toJson() {
-        return "{}";
+        JsonArrayBuilder builder = Json.createArrayBuilder();
+        items.forEach(item -> {
+            JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
+            objectBuilder.add("titulo", item.getLivro().getTitulo())
+                    .add("preco", item.getLivro().getPreco())
+                    .add("quantidade", item.getQuantidade())
+                    .add("total", getTotal());
+            builder.add(objectBuilder);
+        });
+
+        String json = builder.build().toString();
+        System.out.println(json);
+
+        return json;
     }
 }

@@ -20,7 +20,6 @@ public class AdminListaLivrosBean implements Serializable {
 
     public List<Livro> getAllLivros() {
         this.livros = livroDao.lista();
-        System.out.println(livros);
         return this.livros;
     }
 }

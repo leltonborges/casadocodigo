@@ -57,8 +57,6 @@ public class AdminLivrosBean implements Serializable {
 
     @Transactional
     public String salvar(){
-//        writerPath();
-//        this.livro.setCapaPath(relativePath);
         FileSave fileSave = new FileSave();
         this.livro.setCapaPath(fileSave.writerPath(capaLivro, "/livros/capas/"));
         livroDao.salvar(livro);
